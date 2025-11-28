@@ -1,36 +1,39 @@
 package org.example.problems.solving.changeWord;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.example.global.objects.Answer;
+import org.example.global.test.AlgorithmTestRunner;
+import org.example.global.test.Solver;
+import org.example.global.test.TestCase;
+import org.example.problems.solving.changeWord.dto.ChangeWordInput;
 
 public class Main {
 	public static void main(String[] args) {
-		String begin1 = "hit";
-		String target1 = "cog";
-		String[] arr1 = {"hot", "dot", "dog", "lot", "log", "cog"};
-		int expected1 = 4;
+		ChangeWord changeWord = new ChangeWord();
+		Solver<ChangeWordInput, Integer> solver =
+			input -> changeWord.solution(input.begin(), input.target(), input.words());
 
-		String begin2 = "hit";
-		String target2 = "cog";
-		String[] arr2 = {"hot", "dot", "dog", "lot", "log"};
-		int expected2 = 0;
+		List<TestCase<ChangeWordInput, Integer>> testCases = List.of(
+			new TestCase<>(
+				"기본 케이스 - cog 도달 가능",
+				new ChangeWordInput(
+					"hit",
+					"cog",
+					new String[]{"hot", "dot", "dog", "lot", "log", "cog"}
+				),
+				4
+			),
+			new TestCase<>(
+				"cog 미포함 - 도달 불가",
+				new ChangeWordInput(
+					"hit",
+					"cog",
+					new String[]{"hot", "dot", "dog", "lot", "log"}
+				),
+				0
+			)
+		);
 
-		ChangeWord changeWord1 = new ChangeWord();
-		ChangeWord changeWord2 = new ChangeWord();
-
-		int result1 = changeWord1.solution(begin1, target1, arr1);
-		int result2 = changeWord2.solution(begin2, target2, arr2);
-
-		List<Answer> answers = new ArrayList<>();
-
-		answers.add(new Answer(result1, expected1));
-		answers.add(new Answer(result2, expected2));
-
-		int count = 1;
-		for (Answer answer: answers) {
-			answer.printAndCompare(String.format("%s case:", count));
-		}
+		AlgorithmTestRunner.runTests("ChangeWord", solver, testCases);
 	}
 }

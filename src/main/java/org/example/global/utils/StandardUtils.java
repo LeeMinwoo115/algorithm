@@ -6,7 +6,7 @@ public class StandardUtils {
 
 	private static final CustomLogger log = CustomLogger.getInstance();
 
-	public static void printAndCompare(String caseName, Object result, Object expected) {
+	public static <T> void printAndCompare(String caseName, T result, T expected) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format(
