@@ -1,34 +1,37 @@
 package org.example.problems.completed.network;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.example.global.objects.Answer;
+import org.example.global.test.AlgorithmTestRunner;
+import org.example.global.test.Solver;
+import org.example.global.test.TestCase;
+import org.example.problems.completed.network.dto.NetworkInput;
 
 public class Main {
 	public static void main(String[] args) {
-		int n1 = 3;
-		int[][] computers1 = {{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}; // return 2
-		int expected1 = 2;
+		Network network = new Network();
+		Solver<NetworkInput, Integer> solver =
+			input -> network.solution(input.totalComputers(), input.computers());
 
-		int n2 = 3;
-		int[][] computers2 = {{1, 1, 0}, {1, 1, 1}, {0, 1, 1}}; // return 1
-		int expected2 = 1;
+		List<TestCase<NetworkInput, Integer>> testCases = List.of(
+			new TestCase<>(
+				"total: 3, computers: {{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}, expected: 3",
+				new NetworkInput(
+					3,
+					new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}
+				),
+				2
+			),
+			new TestCase<>(
+				"total: 3, computers: {{1, 1, 0}, {1, 1, 1}, {0, 1, 1}}, expected: 1",
+				new NetworkInput(
+					3,
+					new int[][]{{1, 1, 0}, {1, 1, 1}, {0, 1, 1}}
+				),
+				1
+			)
+		);
 
-		Network network1 = new Network();
-		Network network2 = new Network();
-
-		int result1 = network1.solution(n1, computers1);
-		int result2 = network2.solution(n2, computers2);
-
-		List<Answer> answers = new ArrayList<>();
-
-		answers.add(new Answer(result1, expected1));
-		answers.add(new Answer(result2, expected2));
-
-		int count = 1;
-		for (Answer answer: answers) {
-			answer.printAndCompare(String.format("%s case:", count));
-		}
+		AlgorithmTestRunner.runTests("Network", solver, testCases);
 	}
 }

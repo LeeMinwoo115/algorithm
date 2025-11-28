@@ -1,27 +1,29 @@
 package org.example.problems.completed.searchDungeon;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.example.global.objects.Answer;
+import org.example.global.test.AlgorithmTestRunner;
+import org.example.global.test.Solver;
+import org.example.global.test.TestCase;
+import org.example.problems.completed.searchDungeon.dto.SearchDungeonInput;
 
 public class Main {
     public static void main(String[] args) {
-        SearchDungeon sol = new SearchDungeon();
+        SearchDungeon searchDungeon = new SearchDungeon();
+        Solver<SearchDungeonInput, Integer> solver =
+            input -> searchDungeon.solution(input.capacity(), input.dungeons());
 
-        int k = 80;
-        int[][] dungeons = {{80, 20}, {50, 40}, {30, 10}};
-        int expected = 3;
+        List<TestCase<SearchDungeonInput, Integer>> testCases = List.of(
+            new TestCase<>(
+                "k: 80, dungeons: {{80, 20}, {50, 40}, {30, 10}}, expected: 3",
+                new SearchDungeonInput(
+                    80,
+                    new int[][]{{80, 20}, {50, 40}, {30, 10}}
+                ),
+                3
+            )
+        );
 
-        int result = sol.solution(k, dungeons);
-
-        List<Answer> answers = new ArrayList<>();
-
-        answers.add(new Answer(result, expected));
-
-        int count = 1;
-        for (Answer answer: answers) {
-            answer.printAndCompare(String.format("%s case:", count));
-        }
+        AlgorithmTestRunner.runTests("SearchDungeon", solver, testCases);
     }
 }

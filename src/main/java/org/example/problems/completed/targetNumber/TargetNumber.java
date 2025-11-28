@@ -7,6 +7,7 @@ public class TargetNumber {
 	public int solution(int[] numbers, int target) {
 		int depth = 1;
 		int result = 0;
+		count = 0;
 
 		for (String type: types) {
 			dfs(numbers, target, type, depth, result);
