@@ -1,15 +1,15 @@
-package org.example.problems.solving.changeWord;
+package org.example.problems.completed.changeWord;
 
 import java.util.List;
 
 import org.example.global.test.AlgorithmTestRunner;
 import org.example.global.test.Solver;
 import org.example.global.test.TestCase;
-import org.example.problems.solving.changeWord.dto.ChangeWordInput;
+import org.example.problems.completed.changeWord.dto.ChangeWordInput;
 
 public class Main {
 	public static void main(String[] args) {
-		ChangeWord changeWord = new ChangeWord();
+		ChangeWordDFS changeWord = new ChangeWordDFS();
 		Solver<ChangeWordInput, Integer> solver =
 			input -> changeWord.solution(input.begin(), input.target(), input.words());
 
