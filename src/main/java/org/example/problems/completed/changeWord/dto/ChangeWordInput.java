@@ -1,4 +1,4 @@
-package org.example.problems.solving.changeWord.dto;
+package org.example.problems.completed.changeWord.dto;
 
 public record ChangeWordInput (
 	String begin,
