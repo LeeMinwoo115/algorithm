@@ -1,4 +1,4 @@
-package org.example.problems.solving.pickupItem.dto;
+package org.example.problems.completed.pickupItem.dto;
 
 public record PickUpItemInput(
 	int[][] rectangle,

@@ -1,11 +1,11 @@
-package org.example.problems.solving.pickupItem;
+package org.example.problems.completed.pickupItem;
 
 import java.util.List;
 
 import org.example.global.test.AlgorithmTestRunner;
 import org.example.global.test.Solver;
 import org.example.global.test.TestCase;
-import org.example.problems.solving.pickupItem.dto.PickUpItemInput;
+import org.example.problems.completed.pickupItem.dto.PickUpItemInput;
 
 public class Main {
 	public static void main(String[] args) {
